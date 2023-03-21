@@ -6,7 +6,7 @@ const footer = document.getElementById("footer");
 let menuUrl = "https://teamgreen.site/index.php/wp-json/menus/v1/menus/";
 
 
-fetch("http://greenws.se/index.php/wp-json")
+fetch("http://teamgreen.site/index.php/wp-json")
     .then((response) => response.json())
     .then((data) => {
 
@@ -35,11 +35,48 @@ function printMenu(menu, target) {
         let li = document.createElement("li");
         li.innerText = item.title;
         li.addEventListener("click", () => {
+
+            console.log("GÖR EN FUNKTION SOM TÖMMER MAIN CONTENT OCH ERSÄTTER MED KLICKADE VÄRDETS CONTENT!");
+            // FUNKTION HÄR
+            
         })
         ul.append(li);
     })
     div.append(ul);
 }
+
+
+
+
+fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages") 
+.then(res => res.json())
+.then(data => {
+    //console.log("posts", data);
+    printPages(data);
+})
+
+function printPages(pages) {
+
+    let ul = document.createElement("ul")
+    
+        //console.log("page", page.title.rendered);
+        let li = document.createElement("li")
+        let div = document.createElement("div")
+
+        li.innerText = pages[0].title.rendered;
+        div.innerHTML = pages[0].content.rendered;
+
+
+        ul.appendChild(li)
+
+        
+    mainContent.appendChild(ul);
+    mainContent.appendChild(div);
+
+    
+}
+
+
 
 fetchMenu("16", "#header");
 fetchMenu("17", "#footer");
