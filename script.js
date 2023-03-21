@@ -6,7 +6,6 @@ const footer = document.getElementById("footer");
 let menuUrl = "https://teamgreen.site/index.php/wp-json/menus/v1/menus/";
 
 
-
 fetch("http://greenws.se/index.php/wp-json")
     .then((response) => response.json())
     .then((data) => {
@@ -16,7 +15,6 @@ fetch("http://greenws.se/index.php/wp-json")
         titelName.innerText = data.name;
         header.appendChild(titelName);
     });
-
 
 function fetchMenu(menu, target) {
 
@@ -42,9 +40,6 @@ function printMenu(menu, target) {
     })
     div.append(ul);
 }
-
-
-
 
 fetchMenu("16", "#header");
 fetchMenu("17", "#footer");
