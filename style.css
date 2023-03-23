@@ -1,0 +1,23 @@
+.img-div {
+  max-width: 350px;
+  max-height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+.product-img {
+  max-width: 300px;
+  max-height: 250px;
+}
+
+.product-name {
+  list-style: none;
+}
+.product-div {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 10px;
+  text-align: center;
+  padding: 15px;
+  align-items: center;
+}
