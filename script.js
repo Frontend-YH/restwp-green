@@ -6,13 +6,29 @@ const footer = document.getElementById("footer");
 let menuUrl = "https://teamgreen.site/index.php/wp-json/menus/v1/menus/";
 
 
+async function pageFunction() {
+    const response = await fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages");
+    const data = await response.json();
+    return data
+}
+
+let pageObject = await pageFunction();
+
+
 fetch("http://teamgreen.site/index.php/wp-json")
     .then((response) => response.json())
     .then((data) => {
 
-        console.log(data)
         let titelName = document.createElement("h1");
         titelName.innerText = data.name;
+        titelName.addEventListener("click", function () {
+            mainContent.innerHTML = "";
+            fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages")
+                .then(res => res.json())
+                .then(data => {
+                    printPages(data);
+                })
+        })
         header.appendChild(titelName);
     });
 
@@ -34,11 +50,17 @@ function printMenu(menu, target) {
     menu.map(item => {
         let li = document.createElement("li");
         li.innerText = item.title;
-        li.addEventListener("click", () => {
+        let id = item.object_id;
 
-            console.log("GÖR EN FUNKTION SOM TÖMMER MAIN CONTENT OCH ERSÄTTER MED KLICKADE VÄRDETS CONTENT!");
-            // FUNKTION HÄR
-            
+        li.addEventListener("click", () => {
+            mainContent.innerHTML = "";
+            fetchPageContent(id);
+
+            // Koppla in post JSON till click på nyheter och läs av url:nyheter/2 i menyn JSON
+
+            // fetchPostContent(/* Något */);
+
+
         })
         ul.append(li);
     })
@@ -46,34 +68,57 @@ function printMenu(menu, target) {
 }
 
 
+function fetchPageContent(fid) {
+    setTimeout(() => {
+
+        pageObject.map(value => {
+
+            if (value.id == fid) {
+                let wrapper = document.createElement("div");
+                let title = document.createElement("p");
+                title.innerText = value.title.rendered
+                let description = document.createElement("p");
+                description.innerHTML = value.content.rendered
+
+                wrapper.appendChild(title);
+                wrapper.appendChild(description);
+
+                mainContent.appendChild(wrapper);
+            }
+        })
+    }, 1000);
+}
 
 
-fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages") 
-.then(res => res.json())
-.then(data => {
-    //console.log("posts", data);
-    printPages(data);
-})
+
+
+
+fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages")
+    .then(res => res.json())
+    .then(data => {
+        //console.log("posts", data);
+        printPages(data);
+    })
 
 function printPages(pages) {
 
     let ul = document.createElement("ul")
-    
-        //console.log("page", page.title.rendered);
-        let li = document.createElement("li")
-        let div = document.createElement("div")
 
-        li.innerText = pages[0].title.rendered;
-        div.innerHTML = pages[0].content.rendered;
+    //console.log("page", page.title.rendered);
+    let li = document.createElement("li")
+    let div = document.createElement("div")
+
+    li.innerText = pages[0].title.rendered;
+    div.innerHTML = pages[0].content.rendered;
 
 
-        ul.appendChild(li)
+    ul.appendChild(li)
 
-        
+
     mainContent.appendChild(ul);
     mainContent.appendChild(div);
 
-    
+
 }
 
 
