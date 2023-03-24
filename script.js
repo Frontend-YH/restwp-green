@@ -99,12 +99,12 @@ function fetchPostContent() {
         postObject.map(value => {
 
             let wrapper = document.createElement("div");
-            let title = document.createElement("p");
-            title.innerText = value.title.rendered
+            let titleAndDate = document.createElement("p");
+            titleAndDate.innerText = value.title.rendered + " " + value.date
             let description = document.createElement("p");
             description.innerHTML = value.content.rendered
 
-            wrapper.appendChild(title);
+            wrapper.appendChild(titleAndDate);
             wrapper.appendChild(description);
 
             mainContent.appendChild(wrapper);
