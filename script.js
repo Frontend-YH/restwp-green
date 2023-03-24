@@ -4,15 +4,17 @@ const mainContent = document.getElementById("content");
 const header = document.getElementById("header");
 const footer = document.getElementById("footer");
 let menuUrl = "https://teamgreen.site/index.php/wp-json/menus/v1/menus/";
+const pageJsonURL = "http://teamgreen.site/index.php/wp-json/wp/v2/pages";
+const postJsonURL = "http://teamgreen.site/index.php/wp-json/wp/v2/posts";
 
-
-async function pageFunction() {
-    const response = await fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages");
+async function pageFunction(fetchURL) {
+    const response = await fetch(fetchURL);
     const data = await response.json();
     return data
 }
 
-let pageObject = await pageFunction();
+let pageObject = await pageFunction(pageJsonURL);
+let postObject = await pageFunction(postJsonURL);
 
 
 fetch("http://teamgreen.site/index.php/wp-json")
@@ -54,12 +56,13 @@ function printMenu(menu, target) {
 
         li.addEventListener("click", () => {
             mainContent.innerHTML = "";
-            fetchPageContent(id);
-
-            // Koppla in post JSON till click på nyheter och läs av url:nyheter/2 i menyn JSON
-
-            // fetchPostContent(/* Något */);
-
+            if (item.title == "Hem") {
+                fetchPageContent(82);
+            } else if (item.title != "Nyheter") {
+                fetchPageContent(id);
+            } else {
+                fetchPostContent();
+            }
 
         })
         ul.append(li);
@@ -86,12 +89,28 @@ function fetchPageContent(fid) {
                 mainContent.appendChild(wrapper);
             }
         })
+
     }, 1000);
 }
 
+function fetchPostContent() {
+    setTimeout(() => {
 
+        postObject.map(value => {
 
+            let wrapper = document.createElement("div");
+            let title = document.createElement("p");
+            title.innerText = value.title.rendered
+            let description = document.createElement("p");
+            description.innerHTML = value.content.rendered
 
+            wrapper.appendChild(title);
+            wrapper.appendChild(description);
+
+            mainContent.appendChild(wrapper);
+        })
+    }, 1000);
+}
 
 fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages")
     .then(res => res.json())
@@ -108,8 +127,8 @@ function printPages(pages) {
     let li = document.createElement("li")
     let div = document.createElement("div")
 
-    li.innerText = pages[0].title.rendered;
-    div.innerHTML = pages[0].content.rendered;
+    li.innerText = pages[1].title.rendered;
+    div.innerHTML = pages[1].content.rendered;
 
 
     ul.appendChild(li)
@@ -120,8 +139,6 @@ function printPages(pages) {
 
 
 }
-
-
 
 fetchMenu("16", "#header");
 fetchMenu("17", "#footer");

@@ -23,14 +23,16 @@ body {
   font-size: 30px;
 }
 
+textarea {
+  resize: none;
+}
+
 #content {
   display: flex;
   flex-direction: column;
-  /* min-width: 80%; */
-  /* max-width: 100%; */
   padding: 40px 200px 0px 200px;
   align-items: center;
-  min-height: 418px;
+  min-height: calc(100vh - 62.4px - 175px);
 }
 
 #content img {
@@ -56,4 +58,8 @@ body {
 
 #footer > ul {
   list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
 }
