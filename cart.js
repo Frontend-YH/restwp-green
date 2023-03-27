@@ -31,3 +31,8 @@ function printCart() {
 }
 printCart();
 printProducts();
+
+/* Todo 
+
+fixa en annan layout för cart sidan , inte displaya alla produkter
+ */
