@@ -1,11 +1,7 @@
 /* Hämtar Produktbilder */
 export default function printProducts(printProductList) {
-
-
-
-    let productDiv = document.getElementById("products");
-    
-    
+    console.log("hejsan");
+    let productDiv = document.getElementById("content");
     fetch("https://teamgreen.site/index.php/wp-json/wc/store/v1/products")
     .then((response) => response.json())
     .then((data) => {    
@@ -45,8 +41,6 @@ export default function printProducts(printProductList) {
             cta.addEventListener("click", () => {
                 
                 let cart= JSON.parse(localStorage.getItem("cart"))
-                console.log("cart",cart);
-                console.log("hej1",data.id);
                 cart.push(data.id);
                 console.log(cart);
                 localStorage.setItem("cart", JSON.stringify(cart))
@@ -63,3 +57,9 @@ export default function printProducts(printProductList) {
         })
     }
     }
+
+    /* To do 
+    
+    -Fixa så denna sida blir butikssida , lägga till mer content? 
+    -Fixa styling? 
+    */
