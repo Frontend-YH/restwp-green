@@ -1,4 +1,5 @@
 /* Hämtar Produktbilder */
+console.log("hej");
 export default function printProducts(printProductList) {
     console.log("hejsan");
     let productDiv = document.getElementById("content");

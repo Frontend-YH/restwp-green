@@ -1,3 +1,4 @@
+console.log("hej");
 import printProducts from "./products.js";
 if(!localStorage.getItem("cart")){
     console.log("cart finnes");

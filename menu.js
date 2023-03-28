@@ -1,3 +1,4 @@
+console.log("hej");
 import printProducts from "./products.js";
 export default async function printMenu(printMenu) {
     const companyName = document.getElementById("company-name");
