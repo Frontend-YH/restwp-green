@@ -1,5 +1,4 @@
 import printProducts from "./products.js";
-import printCart from "./cart.js";
 export default async function printMenu(printMenu) {
     const companyName = document.getElementById("company-name");
     const mainContent = document.getElementById("content");
@@ -64,10 +63,7 @@ export default async function printMenu(printMenu) {
                 if (item.title == "Hem") {
                     fetchPageContent(82);
                 } else if (item.title != "Nyheter") {
-                    if(item.title == "Varukorg"){
-                    printCart();
-                    } 
-                    else {fetchPageContent(id);}
+                    fetchPageContent(id);
                 }else{
                     fetchPostContent();
                 }
@@ -139,4 +135,4 @@ export default async function printMenu(printMenu) {
     }
     fetchMenu("16", "#header");
     fetchMenu("17", "#footer");
-}   
+}
