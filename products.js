@@ -1,7 +1,8 @@
 /* Hämtar Produktbilder */
 console.log("hej");
 export default function printProducts(printProductList) {
-    console.log("hejsan");
+    console.log("temp Butik");
+
     let productDiv = document.getElementById("content");
     fetch("https://teamgreen.site/index.php/wp-json/wc/store/v1/products")
     .then((response) => response.json())
@@ -42,10 +43,46 @@ export default function printProducts(printProductList) {
             cta.addEventListener("click", () => {
                 
                 let cart= JSON.parse(localStorage.getItem("cart"))
-                cart.push(data.id);
+
+                // const cartItem = {
+                //             id: data.id,
+                //             quantity: 1, // img sökväg
+                //             price: data.prices.price/100,
+                // }
+
+                let findProduct = cart.find(p => p.id === data.id)
+                    
+                if (findProduct) {
+                    findProduct.quantity++
+                } else {
+                    let cartItem = {
+
+                        id: data.id,
+                        name: data.name,
+                        quantity: 1,
+                        price: (data.prices.price ? data.prices.price : data.prices.salePrice),
+                        imgSrc: data.images[0].src,
+                        imgThumbnail: data.images[0].thumbnail,
+                        imgName: data.images[0].name,
+
+                    }
+                    
+                    cart.push(cartItem)
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                
+
+
+
+
+                // console.log(cartItem);
+
                 console.log(cart);
-                localStorage.setItem("cart", JSON.stringify(cart))
-             /* printCart(); */   
+
+
+ 
              })
     
     
