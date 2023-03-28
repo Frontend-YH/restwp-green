@@ -1,4 +1,3 @@
-console.log("hej");
 import printMenu from "./menu.js";
 
 if (localStorage.getItem("cart")) {
