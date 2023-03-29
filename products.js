@@ -5,44 +5,44 @@ export default function printProducts(printProductList) {
 
     let productDiv = document.getElementById("content");
     fetch("https://teamgreen.site/index.php/wp-json/wc/store/v1/products")
-    .then((response) => response.json())
-    .then((data) => {    
-          printProductList(data);
-          console.log(data);
-      })
+        .then((response) => response.json())
+        .then((data) => {
+            printProductList(data);
+            console.log(data);
+        })
     /* Skriver ut produktinfo */
-    function printProductList(data) { 
+    function printProductList(data) {
         data.map(data => {
-    
-            let imgDiv=document.createElement("div");
-            imgDiv.className="product-div";
+
+            let imgDiv = document.createElement("div");
+            imgDiv.className = "product-div";
             /* bilder */
-            let img=document.createElement("img");
-            img.className="product-img";
-            img.src=data.images[0].src
+            let img = document.createElement("img");
+            img.className = "product-img";
+            img.src = data.images[0].src
             /* Lista  */
-            let ul = document.createElement("ul"); 
-            ul.className="product-name";
+            let ul = document.createElement("ul");
+            ul.className = "product-name";
             let li = document.createElement("li");
             li.innerText = data.name;
-    
+
             /* Produkt pris */
-    
-            let price= document.createElement("h4");
-            price.innerHTML=data.price_html;
-    
-         
-              ul.appendChild(li)
-               /* Produkt beskrivning */
-    
-               let desc=document.createElement("p");
-                desc.innerHTML=data.description;
-                /* Add 2 cart knapp */
-            let cta=document.createElement("button");
-            cta.innerText= data.add_to_cart.text;
+
+            let price = document.createElement("h4");
+            price.innerHTML = data.price_html;
+
+
+            ul.appendChild(li)
+            /* Produkt beskrivning */
+
+            let desc = document.createElement("p");
+            desc.innerHTML = data.description;
+            /* Add 2 cart knapp */
+            let cta = document.createElement("button");
+            cta.innerText = data.add_to_cart.text;
             cta.addEventListener("click", () => {
-                
-                let cart= JSON.parse(localStorage.getItem("cart"))
+
+                let cart = JSON.parse(localStorage.getItem("cart"))
 
                 // const cartItem = {
                 //             id: data.id,
@@ -51,7 +51,7 @@ export default function printProducts(printProductList) {
                 // }
 
                 let findProduct = cart.find(p => p.id === data.id)
-                    
+
                 if (findProduct) {
                     findProduct.quantity++
                 } else {
@@ -66,13 +66,13 @@ export default function printProducts(printProductList) {
                         imgName: data.images[0].name,
 
                     }
-                    
+
                     cart.push(cartItem)
                 }
 
                 localStorage.setItem("cart", JSON.stringify(cart));
 
-                
+
 
 
 
@@ -82,10 +82,10 @@ export default function printProducts(printProductList) {
                 console.log(cart);
 
 
- 
-             })
-    
-    
+
+            })
+
+
             imgDiv.appendChild(img);
             imgDiv.appendChild(ul);
             imgDiv.appendChild(price);
@@ -94,10 +94,10 @@ export default function printProducts(printProductList) {
             productDiv.appendChild(imgDiv);
         })
     }
-    }
+}
 
-    /* To do 
-    
-    -Fixa så denna sida blir butikssida , lägga till mer content? 
-    -Fixa styling? 
-    */
+/* To do
+ 
+-Fixa så denna sida blir butikssida , lägga till mer content? 
+-Fixa styling? 
+*/
