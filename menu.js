@@ -1,5 +1,7 @@
-console.log("hej");
 import printProducts from "./products.js";
+import printCart from "./cart.js";
+import printCheckout from".order.js";
+
 export default async function printMenu(printMenu) {
     const companyName = document.getElementById("company-name");
     const mainContent = document.getElementById("content");
@@ -51,23 +53,30 @@ export default async function printMenu(printMenu) {
         let ul = document.createElement("ul");
     
         menu.map(item => {
+
             let li = document.createElement("li");
             li.innerText = item.title;
             let id = item.object_id;
     
             li.addEventListener("click", () => {
                 mainContent.innerHTML = "";
-            if(item.title=="Butik"){
-               printProducts();
-            };
 
-                if (item.title == "Hem") {
-                    fetchPageContent(82);
-                } else if (item.title != "Nyheter") {
-                    fetchPageContent(id);
-                }else{
-                    fetchPostContent();
-                }
+            if (item.title=="Butik") {
+               printProducts();
+            }
+            else if (item.title=="Varukorg") {
+                printCart();
+             }
+             else if(item.title=="Kassa"){
+                printCheckout();
+             }
+           else if (item.title == "Hem") {
+                fetchPageContent(82);
+            } else if (item.title != "Nyheter") {
+                fetchPageContent(id);
+            } else {
+                fetchPostContent();
+            }
     
             })
             ul.append(li);

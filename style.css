@@ -63,3 +63,45 @@ textarea {
   gap: 20px;
   justify-content: center;
 }
+
+
+
+
+
+/* NYA TEMPORÄRA // Jonas */
+
+.cart-div-column {
+
+  border: 0px solid #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  padding: 20px;
+  
+}
+
+
+.cart-div-row {
+
+  display: flex;
+  flex-direction: row;
+  border: 0px solid #000;
+
+
+}
+
+.cart-div-img {
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+  width: 50px;
+  height: 80px;
+
+}
+
+.cart-div-column input {
+
+  width: 30px;
+
+}
