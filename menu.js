@@ -1,5 +1,6 @@
 import printProducts from "./products.js";
 import printCart from "./cart.js";
+import printCheckout from".order.js";
 
 export default async function printMenu(printMenu) {
     const companyName = document.getElementById("company-name");
@@ -65,6 +66,9 @@ export default async function printMenu(printMenu) {
             }
             else if (item.title=="Varukorg") {
                 printCart();
+             }
+             else if(item.title=="Kassa"){
+                printCheckout();
              }
            else if (item.title == "Hem") {
                 fetchPageContent(82);
