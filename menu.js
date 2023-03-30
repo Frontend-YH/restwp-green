@@ -126,7 +126,7 @@ export default async function printMenu(printMenu) {
         }, 1000);
     }
     
-    fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages")
+    fetch("https://teamgreen.site/index.php/wp-json/wp/v2/pages")
         .then(res => res.json())
         .then(data => {
             printPages(data);
