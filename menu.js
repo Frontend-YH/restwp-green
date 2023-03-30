@@ -134,13 +134,8 @@ export default async function printMenu(printMenu) {
     
     function printPages(pages) {
     
-        let ul = document.createElement("ul")
-        let li = document.createElement("li")
         let div = document.createElement("div")
-        li.innerText = pages[1].title.rendered;
         div.innerHTML = pages[1].content.rendered;
-        ul.appendChild(li)
-        mainContent.appendChild(ul);
         mainContent.appendChild(div);
     }
     fetchMenu("16", "#header");
