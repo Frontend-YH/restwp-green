@@ -72,14 +72,21 @@ export default function printCheckout() {
                 phone: phone.value
             },
             line_items: [{
-                name: "lol",
-                quantity: 10,
+                
+                name: "Testprodukt",
+                product_id: 66,
+                quantity: "3",
+                sku: "66",
+                quantity: "2",
+                total: "900",
+
             }],
+
             shipping_lines: [
                 {
                     method_id: "flat_rate",
                     method_title: "Flat rate",
-                    total: "100"
+                    total: "1500"
                 }
             ]
         }
