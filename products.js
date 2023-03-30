@@ -4,6 +4,7 @@ export default function printProducts(printProductList) {
     console.log("temp Butik");
 
     let productDiv = document.getElementById("content");
+    // let storeDiv = document.getElementById("store");
     fetch("https://teamgreen.site/index.php/wp-json/wc/store/v1/products")
         .then((response) => response.json())
         .then((data) => {
@@ -25,6 +26,9 @@ export default function printProducts(printProductList) {
             ul.className = "product-name";
             let li = document.createElement("li");
             li.innerText = data.name;
+
+            let infoDiv = document.createElement("div");
+            infoDiv.className = "info-Div"
 
             /* Produkt pris */
 
@@ -87,10 +91,11 @@ export default function printProducts(printProductList) {
 
 
             imgDiv.appendChild(img);
-            imgDiv.appendChild(ul);
-            imgDiv.appendChild(price);
-            imgDiv.appendChild(desc);
-            imgDiv.appendChild(cta);
+            infoDiv.appendChild(ul);
+            infoDiv.appendChild(price);
+            infoDiv.appendChild(desc);
+            infoDiv.appendChild(cta);
+            imgDiv.appendChild(infoDiv);
             productDiv.appendChild(imgDiv);
         })
     }
