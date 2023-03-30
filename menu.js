@@ -8,8 +8,8 @@ export default async function printMenu(printMenu) {
     const header = document.getElementById("header");
     const footer = document.getElementById("footer");
     let menuUrl = "https://teamgreen.site/index.php/wp-json/menus/v1/menus/";
-    const pageJsonURL = "http://teamgreen.site/index.php/wp-json/wp/v2/pages";
-    const postJsonURL = "http://teamgreen.site/index.php/wp-json/wp/v2/posts";
+    const pageJsonURL = "https://teamgreen.site/index.php/wp-json/wp/v2/pages";
+    const postJsonURL = "https://teamgreen.site/index.php/wp-json/wp/v2/posts";
     
     async function pageFunction(fetchURL) {
         const response = await fetch(fetchURL);
