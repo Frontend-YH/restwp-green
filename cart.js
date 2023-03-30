@@ -71,6 +71,8 @@ export default function printCart(printProductList) {
 
                         updateTotalValue(index);
 
+                        console.log(cart);
+
                         // cartTotal.innerText = "Summa: " + total / 100;
                     } else {
                         itemQInp.value = "1";
@@ -168,27 +170,9 @@ export default function printCart(printProductList) {
 
 
 
-    // function getCartTotal(cart, index) {
-    //     let total = 0;
-
-    //     if (Number(cart[index].quantity) > 1) {
-    //         total += Number(cart[index].quantity * cart[index].price)
-    //         // cartTotal.innerText = "Summa: " + total / 100;
-    //         console.log("Hit?");
-    //         console.log(total);
-    //         return total
-    //     } else {
-    //         total += Number(cart[index].price);
-    //         return total
-    //     }
-    // }
 
 }
 
 
-/* Todo 
-
-fixa en annan layout för cart sidan , inte displaya alla produkter
- */
 
 

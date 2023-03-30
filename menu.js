@@ -8,9 +8,9 @@ export default async function printMenu(printMenu) {
     const header = document.getElementById("header");
     const footer = document.getElementById("footer");
     let menuUrl = "https://teamgreen.site/index.php/wp-json/menus/v1/menus/";
-    const pageJsonURL = "http://teamgreen.site/index.php/wp-json/wp/v2/pages";
-    const postJsonURL = "http://teamgreen.site/index.php/wp-json/wp/v2/posts";
-
+    const pageJsonURL = "https://teamgreen.site/index.php/wp-json/wp/v2/pages";
+    const postJsonURL = "https://teamgreen.site/index.php/wp-json/wp/v2/posts";
+    
     async function pageFunction(fetchURL) {
         const response = await fetch(fetchURL);
         const data = await response.json();
@@ -135,21 +135,17 @@ export default async function printMenu(printMenu) {
         }, 1000);
     }
 
-    fetch("http://teamgreen.site/index.php/wp-json/wp/v2/pages")
+    fetch("https://teamgreen.site/index.php/wp-json/wp/v2/pages")
+
         .then(res => res.json())
         .then(data => {
             printPages(data);
         })
 
     function printPages(pages) {
-
-        let ul = document.createElement("ul")
-        let li = document.createElement("li")
+    
         let div = document.createElement("div")
-        li.innerText = pages[1].title.rendered;
         div.innerHTML = pages[1].content.rendered;
-        ul.appendChild(li)
-        mainContent.appendChild(ul);
         mainContent.appendChild(div);
     }
     fetchMenu("16", "#header");
