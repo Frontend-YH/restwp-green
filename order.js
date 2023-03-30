@@ -71,8 +71,10 @@ export default function printCheckout() {
                 email: email.value,
                 phone: phone.value
             },
-            line_items: [
-            ],
+            line_items: [{
+                name: "lol",
+                quantity: 10,
+            }],
             shipping_lines: [
                 {
                     method_id: "flat_rate",
@@ -85,6 +87,9 @@ export default function printCheckout() {
             delete item.price
             order.line_items.push(item)
         })        
+
+//JSON.parse(localStorage.getItem("cart"))
+
         fetch("https://teamgreen.site/index.php/wp-json/wc/v3/orders", {
             method: "POST",
             headers:{
