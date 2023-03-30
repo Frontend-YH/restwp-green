@@ -73,7 +73,7 @@ export default function printCart(printProductList) {
 
                         console.log(cart);
 
-                        // cartTotal.innerText = "Summa: " + total / 100;
+                       
                     } else {
                         itemQInp.value = "1";
                     }
@@ -116,7 +116,7 @@ export default function printCart(printProductList) {
                     cart.map((currItem, index) => {
                         summanAvKardemumman += Number(cart[index].quantity * cart[index].price)
                     })
-                    cartTotal.innerText = "Summa: " + summanAvKardemumman / 100;
+                    cartTotal.innerHTML = "<b>Summa:</b> " + summanAvKardemumman / 100 + " kr";
                 }
             }
 
@@ -142,7 +142,7 @@ export default function printCart(printProductList) {
         if (total === 0) {
             cartTotal.innerText = "";
         } else {
-            cartTotal.innerText = "Summa: " + total / 100;
+            cartTotal.innerHTML = "<b>Summa:</b> " + total / 100 + " kr";
             contentDiv.appendChild(cartTotal);
         }
 
