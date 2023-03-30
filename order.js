@@ -9,15 +9,15 @@ export default function printCheckout() {
 
     let totalPrice = 0;
 
-    for (let i = 0; i<orderCart.length; i++) {
+    for (let i = 0; i < orderCart.length; i++) {
         let newItem = {
             product_id: orderCart[i].id,
             name: orderCart[i].name,
             quantity: orderCart[i].quantity,
             price: orderCart[i].price,
         }
-        totalPrice = totalPrice + (newItem.price*newItem.quantity);
-        
+        totalPrice = totalPrice + (newItem.price * newItem.quantity);
+
         newCart.push(newItem);
 
         let itemDiv = document.createElement("div")
@@ -33,8 +33,8 @@ export default function printCheckout() {
         itemDiv.appendChild(itemQuantity);
 
         const itemPrice = document.createElement("div")
-        itemPrice.innerText = newItem.price/100 + " kr";
-        itemDiv.appendChild(itemPrice);   
+        itemPrice.innerText = newItem.price / 100 + " kr";
+        itemDiv.appendChild(itemPrice);
 
         contentDiv.appendChild(itemDiv);
 
@@ -44,11 +44,11 @@ export default function printCheckout() {
     itemDivPrice.className = "item-div";
 
     const totalPriceDiv = document.createElement("div")
-    totalPriceDiv.innerHTML = "<b>Att betala:</b> " + totalPrice/100 + " kr";
-    itemDivPrice.appendChild(totalPriceDiv);       
-    contentDiv.appendChild(itemDivPrice);   
+    totalPriceDiv.innerHTML = "<b>Att betala:</b> " + totalPrice / 100 + " kr";
+    itemDivPrice.appendChild(totalPriceDiv);
+    contentDiv.appendChild(itemDivPrice);
 
-    
+
 
 
 
@@ -67,7 +67,7 @@ export default function printCheckout() {
     const city = document.createElement("input")
     city.placeholder = "City:"
 
-    const postcode= document.createElement("input")
+    const postcode = document.createElement("input")
     postcode.placeholder = "Postcode:"
 
     const country = document.createElement("input")
@@ -83,26 +83,26 @@ export default function printCheckout() {
     sendBtn.innerText = "Send Order!"
 
     formBox.append(firstName, lastName, adress, city, postcode, country, email, phone, sendBtn)
-    
+
     contentDiv.appendChild(formBox)
 
-    sendBtn.addEventListener("click", (e) =>{
+    sendBtn.addEventListener("click", (e) => {
         e.preventDefault()
 
         contentDiv.innerHTML = ""
         contentDiv.innerText = "Tack för din beställning"
-        
+
         postOrder();
-    }) 
+    })
 
 
-        
 
 
-    function postOrder(){
+
+    function postOrder() {
         let myCart = JSON.parse(localStorage.getItem("cart"))
         let order = {
-            payment_method: "bacs", 
+            payment_method: "bacs",
             payment_method_title: "Direct Bank Transfer",
             set_paid: true,
 
@@ -136,21 +136,21 @@ export default function printCheckout() {
                 }
             ]
         }
-  
+
 
 
         fetch("https://teamgreen.site/index.php/wp-json/wc/v3/orders", {
             method: "POST",
-            headers:{
+            headers: {
                 "Content-type": "application/json",
             },
-            body: JSON.stringify(order), 
+            body: JSON.stringify(order),
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Ordern är skickad", data);
-            localStorage.setItem("cart", JSON.stringify([]));
-        })
-        .catch(err => console.log("err", err));
+            .then(res => res.json())
+            .then(data => {
+                console.log("Ordern är skickad", data);
+                localStorage.setItem("cart", JSON.stringify([]));
+            })
+            .catch(err => console.log("err", err));
     }
 };

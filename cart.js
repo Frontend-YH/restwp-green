@@ -123,6 +123,7 @@ export default function printCart(printProductList) {
 
 
             let emptyCartBtn = document.createElement("button");
+            emptyCartBtn.className = "empty-cart-button";
             emptyCartBtn.innerText = "Töm kundvagnen";
 
 

@@ -27,10 +27,12 @@ body {
 
 #header > ul > li:hover {
   color: white;
+  cursor: pointer;
 }
 
 #header > h1:hover {
   color: white;
+  cursor: pointer;
 }
 
 textarea {
@@ -75,6 +77,10 @@ textarea {
   padding: 0px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+#footer > ul > li {
+  cursor: pointer;
 }
 
 /* NYA TEMPORÄRA // Jonas */
@@ -211,212 +217,85 @@ textarea {
 .info-Div > button:hover {
   background-color: rgb(62, 225, 62);
   scale: 102%;
+  cursor: pointer;
 }
 
-
-
-div.is-layout-flow.wp-block-column{
+div.is-layout-flow.wp-block-column {
   border: 2px solid black;
   margin-bottom: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .item-div {
-
-display: block;
-width: 500px;
-border: 1px solid #000;
-padding: 12px;
-margin-bottom: 30px;
-
+  display: block;
+  width: 500px;
+  border: 1px solid #000;
+  padding: 12px;
+  margin-bottom: 30px;
 }
 
-
 .item-div div {
-
   display: inline;
-
   padding-right: 50px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
+}
 
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 520px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-wrapper > input {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: solid black;
+}
+
+.form-wrapper > button {
+  width: 220px;
+  margin: auto;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(195, 195, 195);
+  transition: 0.3s;
+  /* font-size: 20px; */
+}
+
+.form-wrapper > button:hover {
+  background-color: rgb(62, 225, 62);
+  scale: 102%;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.item-div {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  /* border: solid black; */
+}
+
+.empty-cart-button {
+  width: 220px;
+  /* margin: auto; */
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(195, 195, 195);
+  transition: 2s;
+  /* font-size: 20px; */
+}
+
+.empty-cart-button:hover {
+  scale: 650%;
+  font-size: 7px;
+  cursor: pointer;
+  background-color: red;
 }
