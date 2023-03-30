@@ -1,6 +1,56 @@
 
+
 let contentDiv = document.getElementById("content");
+
 export default function printCheckout() {
+
+    let orderCart = JSON.parse(localStorage.getItem("cart"));
+    let newCart = [];
+
+    let totalPrice = 0;
+
+    for (let i = 0; i<orderCart.length; i++) {
+        let newItem = {
+            product_id: orderCart[i].id,
+            name: orderCart[i].name,
+            quantity: orderCart[i].quantity,
+            price: orderCart[i].price,
+        }
+        totalPrice = totalPrice + (newItem.price*newItem.quantity);
+        
+        newCart.push(newItem);
+
+        let itemDiv = document.createElement("div")
+        itemDiv.className = "item-div";
+
+        const itemName = document.createElement("div")
+        itemName.innerText = newItem.name;
+        itemName.style.width = "300px;";
+        itemDiv.appendChild(itemName);
+
+        const itemQuantity = document.createElement("div")
+        itemQuantity.innerText = newItem.quantity + " st";
+        itemDiv.appendChild(itemQuantity);
+
+        const itemPrice = document.createElement("div")
+        itemPrice.innerText = newItem.price/100 + " kr";
+        itemDiv.appendChild(itemPrice);   
+
+        contentDiv.appendChild(itemDiv);
+
+    }
+
+    let itemDivPrice = document.createElement("div")
+    itemDivPrice.className = "item-div";
+
+    const totalPriceDiv = document.createElement("div")
+    totalPriceDiv.innerHTML = "<b>Att betala:</b> " + totalPrice/100 + " kr";
+    itemDivPrice.appendChild(totalPriceDiv);       
+    contentDiv.appendChild(itemDivPrice);   
+
+    
+
+
 
     const formBox = document.createElement("form")
     formBox.className = "form-wrapper"
@@ -44,6 +94,11 @@ export default function printCheckout() {
         
         postOrder();
     }) 
+
+
+        
+
+
     function postOrder(){
         let myCart = JSON.parse(localStorage.getItem("cart"))
         let order = {
@@ -71,20 +126,19 @@ export default function printCheckout() {
                 email: email.value,
                 phone: phone.value
             },
-            line_items: [
-            ],
+            line_items: newCart,
+
             shipping_lines: [
                 {
                     method_id: "flat_rate",
                     method_title: "Flat rate",
-                    total: "100"
+                    total: "1500"
                 }
             ]
         }
-        myCart.map(item =>{
-            delete item.price
-            order.line_items.push(item)
-        })        
+  
+
+
         fetch("https://teamgreen.site/index.php/wp-json/wc/v3/orders", {
             method: "POST",
             headers:{
