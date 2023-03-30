@@ -215,7 +215,10 @@ textarea {
 
 
 
-
+div.is-layout-flow.wp-block-column{
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
 
 
 
