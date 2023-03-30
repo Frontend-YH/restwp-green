@@ -89,10 +89,20 @@ export default function printCheckout() {
     sendBtn.addEventListener("click", (e) => {
         e.preventDefault()
 
-        contentDiv.innerHTML = ""
-        contentDiv.innerText = "Tack för din beställning"
+        if(newCart.length>0) {
 
-        postOrder();
+            contentDiv.innerHTML = ""
+            contentDiv.innerText = "Tack för din beställning"
+            postOrder();
+    
+            } else {
+    
+                contentDiv.innerHTML = ""
+                contentDiv.innerText = "Du har inte lagt till någonting i varukorgen!"; 
+    
+            }
+
+
     })
 
 
